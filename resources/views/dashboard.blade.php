@@ -14,145 +14,55 @@
 
                         <!-- component -->
                         <!-- This is an example component -->
-                        <div
-                            class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
-                            <div class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
+
+                        @foreach ($applications as $application)
+                            <div
+                                class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
+                                <div
+                                    class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
+                                    <div class="flex items-center space-x-3">
+                                        <div
+                                            class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
+                                        </div>
+                                        <div class="text-lg font-bold text-slate-700 dark:text-slate-200">
+                                            {{ $application->user->name }}
+                                        </div>
                                     </div>
-                                    <div class="text-lg font-bold text-slate-700 dark:text-slate-200">Joe Smith</div>
-                                </div>
-                                <div class="flex items-center space-x-8">
-                                    <button
-                                        class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">ID:
-                                        5</button>
-                                    <div class="text-xs text-neutral-500">10.11.2025 - 01:00</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-6">
-                                <div class="mb-3 text-xl font-bold">Nulla sed leo tempus, feugiat velit vel, rhoncus
-                                    neque?</div>
-                                <div class="text-sm text-neutral-600 dark:text-neutral-50">Aliquam a tristique sapien,
-                                    nec bibendum urna.
-                                    Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
-                                    gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
-                                    consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
-                                    Curabitur eget feugiat massa</div>
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between text-slate-500">
-                                    <div class="flex space-x-4 md:space-x-8">
-                                        <a href="#">client@example.com</a>
+                                    <div class="flex items-center space-x-8">
+                                        <button
+                                            class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">
+                                            {{ $application->id }}
+                                        </button>
+                                        <div class="text-xs text-neutral-500">
+                                            {{ $application->created_at->format('d M Y') }}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div
-                            class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
-                            <div class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
+
+                                <div class="mt-4 mb-6">
+                                    <div class="mb-3 text-xl font-bold">
+                                        {{ $application->subject }}
                                     </div>
-                                    <div class="text-lg font-bold text-slate-700 dark:text-slate-200">Joe Smith</div>
+                                    <div class="text-sm text-neutral-600 dark:text-neutral-50"
+                                        style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize;">
+                                        {{ $application->message }}
+                                    </div>
                                 </div>
-                                <div class="flex items-center space-x-8">
-                                    <button
-                                        class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">ID:
-                                        5</button>
-                                    <div class="text-xs text-neutral-500">10.11.2025 - 01:00</div>
-                                </div>
-                            </div>
 
-                            <div class="mt-4 mb-6">
-                                <div class="mb-3 text-xl font-bold">Nulla sed leo tempus, feugiat velit vel, rhoncus
-                                    neque?</div>
-                                <div class="text-sm text-neutral-600 dark:text-neutral-50">Aliquam a tristique sapien,
-                                    nec bibendum urna.
-                                    Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
-                                    gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
-                                    consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
-                                    Curabitur eget feugiat massa</div>
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between text-slate-500">
-                                    <div class="flex space-x-4 md:space-x-8">
-                                        <a href="#">client@example.com</a>
+                                <div>
+                                    <div class="flex items-center justify-between text-slate-500">
+                                        <div class="flex space-x-4 md:space-x-8">
+                                            <a href="mailto:{{ $application->user->email }}">
+                                                {{ $application->user->email }}
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div
-                            class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
-                            <div class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
-                                    </div>
-                                    <div class="text-lg font-bold text-slate-700 dark:text-slate-200">Joe Smith</div>
-                                </div>
-                                <div class="flex items-center space-x-8">
-                                    <button
-                                        class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">ID:
-                                        5</button>
-                                    <div class="text-xs text-neutral-500">10.11.2025 - 01:00</div>
-                                </div>
-                            </div>
+                        @endforeach
 
-                            <div class="mt-4 mb-6">
-                                <div class="mb-3 text-xl font-bold">Nulla sed leo tempus, feugiat velit vel, rhoncus
-                                    neque?</div>
-                                <div class="text-sm text-neutral-600 dark:text-neutral-50">Aliquam a tristique sapien,
-                                    nec bibendum urna.
-                                    Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
-                                    gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
-                                    consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
-                                    Curabitur eget feugiat massa</div>
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between text-slate-500">
-                                    <div class="flex space-x-4 md:space-x-8">
-                                        <a href="#">client@example.com</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
-                            <div class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
-                                <div class="flex items-center space-x-3">
-                                    <div class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
-                                    </div>
-                                    <div class="text-lg font-bold text-slate-700 dark:text-slate-200">Joe Smith</div>
-                                </div>
-                                <div class="flex items-center space-x-8">
-                                    <button
-                                        class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">ID:
-                                        5</button>
-                                    <div class="text-xs text-neutral-500">10.11.2025 - 01:00</div>
-                                </div>
-                            </div>
-
-                            <div class="mt-4 mb-6">
-                                <div class="mb-3 text-xl font-bold">Nulla sed leo tempus, feugiat velit vel, rhoncus
-                                    neque?</div>
-                                <div class="text-sm text-neutral-600 dark:text-neutral-50">Aliquam a tristique sapien,
-                                    nec bibendum urna.
-                                    Maecenas convallis dignissim turpis, non suscipit mauris interdum at. Morbi sed
-                                    gravida nisl, a pharetra nulla. Etiam tincidunt turpis leo, ut mollis ipsum
-                                    consectetur quis. Etiam faucibus est risus, ac condimentum mauris consequat nec.
-                                    Curabitur eget feugiat massa</div>
-                            </div>
-
-                            <div>
-                                <div class="flex items-center justify-between text-slate-500">
-                                    <div class="flex space-x-4 md:space-x-8">
-                                        <a href="#">client@example.com</a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mt-4">
+                            {{ $applications->links() }}
                         </div>
                     @else
                         <!-- component -->
@@ -168,7 +78,8 @@
                             </div>
                             <div class="flex flex-col mx-3 mt-6 lg:flex-row">
                                 <div class="w-full lg:w-1/3 m-1">
-                                    <form class="w-full bg-white shadow-md p-6" method="POST">
+                                    <form action="{{ route('applications.store') }}" enctype="multipart/form-data"
+                                        class="w-full bg-white shadow-md p-6" method="POST">
                                         @csrf
                                         <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full md:w-full px-3 mb-6">
@@ -177,20 +88,13 @@
                                                     htmlFor="category_name">Subject</label>
                                                 <input
                                                     class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:border-[#98c01d]"
-                                                    type="text" name="name" placeholder="Subject"
-                                                    required />
+                                                    type="text" name="subject" placeholder="Subject" required />
                                             </div>
                                             <div class="w-full px-3 mb-6">
                                                 <textarea textarea rows="4"
                                                     class="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none focus:border-[#98c01d]"
-                                                    type="text" name="description" required> </textarea>
+                                                    type="text" name="message" required> </textarea>
                                             </div>
-
-                                            <div class="w-full md:w-full px-3 mb-6">
-                                                <button
-                                                    class="appearance-none block w-full bg-green-700 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-green-600 focus:outline-none focus:bg-white focus:border-gray-500">Send Application</button>
-                                            </div>
-
                                             <div class="w-full px-3 mb-8">
                                                 <label
                                                     class="mx-auto cursor-pointer flex w-full max-w-lg flex-col items-center justify-center rounded-xl border-2 border-dashed border-green-400 bg-white p-6 text-center"
@@ -209,10 +113,19 @@
                                                         your file PDF, DOC, PPT, XLS </p>
 
                                                     <input id="dropzone-file" type="file" class="hidden"
-                                                        name="application_file"
+                                                        name="file"
                                                         accept="application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
                                                 </label>
                                             </div>
+
+                                            <div class="w-full md:w-full px-3 mb-6">
+                                                <button
+                                                    class="appearance-none block w-full bg-green-700 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-green-600 focus:outline-none focus:bg-white focus:border-gray-500">
+                                                    Send Application
+                                                </button>
+                                            </div>
+
+
 
                                         </div>
                                     </form>
@@ -241,29 +154,55 @@
                                                         <div class="font-semibold text-center">Action</div>
                                                     </th>
                                                 </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td><img src="https://images.pexels.com/photos/25652584/pexels-photo-25652584/free-photo-of-elegant-man-wearing-navy-suit.jpeg?auto=compress&cs=tinysrgb&w=400"
-                                                            class="h-8 w-8 mx-auto" /></td>
-                                                    <td>Sample Name</td>
-                                                    <td>Sample Description</td>
-                                                    <td class="p-2">
-                                                        <div class="flex justify-center">
-                                                            <a href="#"
-                                                                class="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center">
-                                                                <span>
-                                                                    <FaEdit class="w-4 h-4 mr-1" />
-                                                                </span> Edit
-                                                            </a>
-                                                            <button
-                                                                class="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
-                                                                <span>
-                                                                    <FaTrash class="w-4 h-4 mr-1" />
-                                                                </span> Delete
-                                                            </button>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($clieant_applications as $application)
+                                                    <tr>
+                                                        <td>{{ $application->id }}</td>
+                                                        <td>
+                                                            @if ($application->file_url)
+                                                                <a href="{{ asset('storage/' . $application->file) }}"
+                                                                    target="_blank"
+                                                                    class="text-blue-600 hover:underline">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        fill="none" viewBox="0 0 24 24"
+                                                                        strokeWidth={1.5} stroke="currentColor"
+                                                                        className="size-6">
+                                                                        <path strokeLinecap="round"
+                                                                            strokeLinejoin="round"
+                                                                            d="M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12" />
+                                                                    </svg>
+
+                                                                </a>
+                                                            @else
+                                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                                    viewBox="0 0 24 24" strokeWidth={1.5}
+                                                                    stroke="currentColor" className="size-6">
+                                                                    <path strokeLinecap="round" strokeLinejoin="round"
+                                                                        d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                                                </svg>
+                                                            @endif
+                                                        </td>
+                                                        <td>{{ $application->subject }}</td>
+                                                        <td
+                                                            style="width: 300px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize;">
+                                                            {{ $application->message }}</td>
+                                                        <td class="p-2">
+                                                            <div class="flex justify-center">
+                                                                <a href="#"
+                                                                    class="rounded-md hover:bg-green-100 text-green-600 p-2 flex justify-between items-center">
+                                                                    <span>
+                                                                        <FaEdit class="w-4 h-4 mr-1" />
+                                                                    </span> Edit
+                                                                </a>
+                                                                <button
+                                                                    class="rounded-md hover:bg-red-100 text-red-600 p-2 flex justify-between items-center">
+                                                                    <span>
+                                                                        <FaTrash class="w-4 h-4 mr-1" />
+                                                                    </span> Delete
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
                                             </thead>
                                         </table>
                                     </div>

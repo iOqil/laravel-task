@@ -14,56 +14,59 @@
 
                         <!-- component -->
                         <!-- This is an example component -->
-
-                        @foreach ($applications as $application)
-                            <div
-                                class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
+                        @if ($applications->count() > 0)
+                            @foreach ($applications as $application)
                                 <div
-                                    class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
-                                    <div class="flex items-center space-x-3">
-                                        <div
-                                            class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
+                                    class="mt-4 rounded-xl border dark:border-neutral-700 p-5 shadow-md bg-white dark:bg-gray-800">
+                                    <div
+                                        class="flex w-full items-center justify-between border-b dark:border-neutral-700 pb-3">
+                                        <div class="flex items-center space-x-3">
+                                            <div
+                                                class="h-8 w-8 rounded-full bg-slate-400 bg-[url('https://i.pravatar.cc/32')]">
+                                            </div>
+                                            <div class="text-lg font-bold text-slate-700 dark:text-slate-200">
+                                                {{ $application->user->name }}
+                                            </div>
                                         </div>
-                                        <div class="text-lg font-bold text-slate-700 dark:text-slate-200">
-                                            {{ $application->user->name }}
+                                        <div class="flex items-center space-x-8">
+                                            <button
+                                                class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">
+                                                {{ $application->id }}
+                                            </button>
+                                            <div class="text-xs text-neutral-500">
+                                                {{ $application->created_at->format('d M Y') }}
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="flex items-center space-x-8">
-                                        <button
-                                            class="rounded-2xl border dark:border-neutral-700 bg-neutral-100 dark:bg-neutral-700 px-3 py-1 text-xs font-semibold">
-                                            {{ $application->id }}
-                                        </button>
-                                        <div class="text-xs text-neutral-500">
-                                            {{ $application->created_at->format('d M Y') }}
-                                        </div>
-                                    </div>
-                                </div>
 
-                                <div class="mt-4 mb-6">
-                                    <div class="mb-3 text-xl font-bold">
-                                        {{ $application->subject }}
+                                    <div class="mt-4 mb-6">
+                                        <div class="mb-3 text-xl font-bold">
+                                            {{ $application->subject }}
+                                        </div>
+                                        <div class="text-sm text-neutral-600 dark:text-neutral-50"
+                                            style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize;">
+                                            {{ $application->message }}
+                                        </div>
                                     </div>
-                                    <div class="text-sm text-neutral-600 dark:text-neutral-50"
-                                        style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; text-transform: capitalize;">
-                                        {{ $application->message }}
-                                    </div>
-                                </div>
 
-                                <div>
-                                    <div class="flex items-center justify-between text-slate-500">
-                                        <div class="flex space-x-4 md:space-x-8">
-                                            <a href="mailto:{{ $application->user->email }}">
-                                                {{ $application->user->email }}
-                                            </a>
+                                    <div>
+                                        <div class="flex items-center justify-between text-slate-500">
+                                            <div class="flex space-x-4 md:space-x-8">
+                                                <a href="mailto:{{ $application->user->email }}">
+                                                    {{ $application->user->email }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                            @endforeach
+
+                            <div class="mt-4">
+                                {{ $applications->links() }}
                             </div>
-                        @endforeach
-
-                        <div class="mt-4">
-                            {{ $applications->links() }}
-                        </div>
+                        @else
+                            <p class="text-gray-500">No applications found.</p>
+                        @endif
                     @else
                         <!-- component -->
                         <div class="bg-gray-100">

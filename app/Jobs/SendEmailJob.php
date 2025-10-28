@@ -23,7 +23,6 @@ class SendEmailJob implements ShouldQueue
     public function handle(): void
     {
         $manager = User::first();
-
         Mail::to($manager)->send(new ApplicationCreated($this->app));
     }
 }

@@ -77,7 +77,14 @@
                                 </div>
                             </div>
                             <div class="header my-3 h-12 px-10 flex items-center justify-between">
-                                <h1 class="font-medium text-2xl">All Applications</h1>
+                                <h1 class="font-medium text-gray-800 text-2xl">All Applications</h1>
+                                @if(session()->has('error'))
+                                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
+                                        role="alert">
+                                        <strong class="font-bold">Error!</strong>
+                                        <span class="block sm:inline">{{ session('error') }}</span>
+                                    </div>
+                                @endif
                             </div>
                             <div class="flex flex-col mx-3 mt-6 lg:flex-row">
                                 <div class="w-full lg:w-1/3 m-1">

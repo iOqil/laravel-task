@@ -6,6 +6,7 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\SendEmailJob;
+use Carbon\Carbon;
 
 class ApplicationController extends Controller
 {
@@ -13,6 +14,10 @@ class ApplicationController extends Controller
 
     public function store(Request $request)
     {
+
+        if($this->checkdate()){
+            return redirect()->back()->with(['error' => 'You can only submit one application per day.']);
+        }
 
         if ($request->hasFile('file')) {
             $name = $request->file('file')->getClientOriginalName();
@@ -32,9 +37,20 @@ class ApplicationController extends Controller
             'file_url' => $path ?? null,
         ]);
 
-       dispatch(new SendEmailJob($app));
+        dispatch(new SendEmailJob($app));
 
         return redirect()->back();
+    }
+
+    public function checkdate()
+    {
+        $last_application = Application::where('user_id', Auth::id())->latest()->first();
+        $last_app_date = Carbon::parse($last_application->created_at)->format('Y-m-d');
+        $today = Carbon::now()->format('Y-m-d');
+
+        if ($last_app_date === $today) {
+            return true;
+        }
     }
 
 
